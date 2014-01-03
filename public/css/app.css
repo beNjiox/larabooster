@@ -1,0 +1,12 @@
+.color_box {
+    display:inline-block;
+    height:25px;
+    width:25px;    
+    padding:10px;
+}
+
+.color_code {
+    font-family:"Lato";
+    display:inline-block;
+    width:50%;
+}
