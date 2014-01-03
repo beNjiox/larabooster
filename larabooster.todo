@@ -1,0 +1,15 @@
+Larabooster:
+  ☐ interactions on UI for add
+  ☐ interactions on UI for delete
+  ☐ real validations
+  ☐ exceptions for errors
+  ☐ unit tests
+  ☐ Hosting on digitalOcean
+  ☐ GoogleAnalytics
+  ☐ HTTP middleware for too many actions
+  ☐ Roulement sur les couleurs
+
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+✔ separates files @done (14-01-03) @project(Larabooster)
