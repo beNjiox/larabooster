@@ -14,7 +14,6 @@ class CreateTableColors extends Migration {
 		Schema::create('colors', function($table)
 		{
 			$table->increments('id');
-			$table->string('name');
 			$table->string('code')->unique();
 		});
 	}

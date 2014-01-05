@@ -5,21 +5,19 @@ function is_hexadecimal($color)
     return preg_match('/^#[a-f0-9]{6}$/i', $color);
 }
 
+use Larabooster\DbColorRepository;
+use Larabooster\MemcacheColorRepository;
+use Larabooster\RedisColorRepository;
 
-// There is something wrong here
-// the output from all these datastores are not consistent, find a elegant way to fix it
 Route::get('/', function()
 {    
-    $mysql_colors    = Color::orderBy('id', 'desc')->get()->toArray();
-    $memcache_colors = Cache::has('colors') ? Cache::get('colors') : [];
-    foreach ($memcache_colors as $colors) {
-        $memcache_colors['code'] = $colors;
-    }
+    $MySQL_storage    = new ColorsController(new DbColorRepository);
+    $memcache_storage = new ColorsController(new MemcacheColorRepository);
+    $redis_storage    = new ColorsController(new RedisColorRepository);
 
-    $redis_colors    = Redis::smembers('colors');
-    foreach ($redis_colors as $colors) {
-        $redis_colors['code'] = $colors;
-    }
+    $mysql_colors    = $MySQL_storage->getAll();
+    $memcache_colors = $memcache_storage->getAll();
+    $redis_colors    = $redis_storage->getAll();
 
     $to_view = [
         'mysql_colors'    => $mysql_colors,
@@ -27,29 +25,38 @@ Route::get('/', function()
         'redis_colors'    => $redis_colors
     ];
 
-    dd($to_view);
-
     return View::make('home')->with($to_view);
 });
 
-use Larabooster\DbColorRepository;
-use Larabooster\MemcacheColorRepository;
-use Larabooster\RedisColorRepository;
-
 Route::group(array('prefix' => 'api'), function()
 {
-    Route::post('mysql/add', function() {        
+    Route::post('mysql', function() {
         $controller = new ColorsController(new DbColorRepository);
         return $controller->store();
     });
 
-    Route::post('memcache/add', function() {        
+    Route::delete('mysql', function() {        
+        $controller = new ColorsController(new DbColorRepository);
+        return $controller->delete();
+    });
+
+    Route::post('memcache', function() {
         $controller = new ColorsController(new MemcacheColorRepository);
         return $controller->store();
     });
 
-    Route::post('redis/add', function() {        
+    Route::delete('memcache', function() {        
+        $controller = new ColorsController(new MemcacheColorRepository);
+        return $controller->delete();
+    });
+
+    Route::post('redis', function() {
         $controller = new ColorsController(new RedisColorRepository);
         return $controller->store();
+    });
+
+    Route::delete('redis', function() {        
+        $controller = new ColorsController(new RedisColorRepository);
+        return $controller->delete();
     });
 });

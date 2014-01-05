@@ -1,13 +1,32 @@
+Storage:
+  ✔ MySQL @done (14-01-05)
+  ✔ Redis @done (14-01-05)
+  ✔ Memcache @done (14-01-05)
+  ☐ File
+  ☐ postgreSQL
+  ☐ MongoDB
+
 Larabooster:
-  ☐ interactions on UI for add
-  ☐ interactions on UI for delete
-  ☐ real validations
+  ✔ interactions on UI for add @done (14-01-04)
+  ✔ glitch when JS appending on UI @done (14-01-05)
+  ✔ interactions on UI for delete @done (14-01-05)
+  ✔ Error when deleting a just added element @done (14-01-05)
+  ☐ Edge case of last item released should display the alert
+  ☐ Validations
+    ✔ Server side @done (14-01-05)
+    ☐ Client side (basic, just empty input)
+    ☐ Client advanced (maskInput)
   ☐ exceptions for errors
   ☐ unit tests
   ☐ Hosting on digitalOcean
   ☐ GoogleAnalytics
   ☐ HTTP middleware for too many actions
-  ☐ Roulement sur les couleurs
+  ☐ Display only last 10 items added
+    ☐ pagination ?
+  ☐ AngularJS
+  ☐ About page
+  ☐ Code snippet and help for each storage
+  ☐ Versionning of project
 
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿

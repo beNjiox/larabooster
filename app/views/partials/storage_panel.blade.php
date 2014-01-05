@@ -1,3 +1,16 @@
+<!-- template color_item -->
+  <div style='display:none;' id='color_item_tmpl'>
+    <div class='color_code'>
+      _CODE_
+    </div>
+    <div class='color_box' style='background:_CODE_'>
+    </div>
+    <span class='delete_color' data-color='_CODE_' data-context='{{strtolower($storage_name_sm)}}'>
+      <i class='fa fa-times remove_color'></i>
+    </span>
+  </div>
+<!-- template color_item -->
+
 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
     <div class="panel panel-default">
           <div class="panel-heading">
@@ -7,23 +20,25 @@
                 <div class="list-group">
                     <h4 class="list-group-item-heading"></h4>
                     @if (empty($colors))
-                        <div class="alert alert-info">
+                        <div class="alert alert-info alert_{{strtolower($storage_name_sm)}}">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <strong>Oops</strong> Nothing in the {{$storage_name_lg}}
                         </div>
-                    @else                           
-                      <div class='list_{{strtolower($storage_name_sm)}}'>
-                        @foreach ($colors as $c)
-                        <div>
-                          <div class='color_code'>
-                            {{ $c['code'] }}
-                          </div>
-                          <div class='color_box' style="background-color:{{$c['code']}};">
-                          </div>
-                        </div>
-                        @endforeach
-                      </div>
                     @endif
+                    <div class='list_{{strtolower($storage_name_sm)}}'>
+                      @foreach ($colors as $c)
+                      <div>
+                        <div class='color_code'>
+                          {{ $c }}
+                        </div>
+                        <div class='color_box' style="background-color:{{$c}};">
+                        </div>
+                        <span class='delete_color' data-color='{{$c}}' data-context='{{strtolower($storage_name_sm)}}'>
+                          <i class='fa fa-times remove_color'></i>
+                        </span>
+                      </div>
+                      @endforeach
+                    </div>
                 </div>
 
                 <div class="form-group">
