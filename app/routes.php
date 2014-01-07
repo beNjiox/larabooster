@@ -35,7 +35,7 @@ Route::group(array('prefix' => 'api'), function()
         return $controller->store();
     });
 
-    Route::delete('mysql', function() {        
+    Route::delete('mysql', function() {          
         $controller = new ColorsController(new DbColorRepository);
         return $controller->delete();
     });
@@ -46,7 +46,7 @@ Route::group(array('prefix' => 'api'), function()
     });
 
     Route::delete('memcache', function() {        
-        $controller = new ColorsController(new MemcacheColorRepository);
+            $controller = new ColorsController(new MemcacheColorRepository);
         return $controller->delete();
     });
 

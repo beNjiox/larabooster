@@ -11,7 +11,7 @@
   </div>
 <!-- template color_item -->
 
-<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+<div class="col-lg-4">
     <div class="panel panel-default">
           <div class="panel-heading">
                 <h3 class="panel-title">{{ $storage_name_lg }}</h3>
@@ -19,12 +19,10 @@
           <div class="panel-body">
                 <div class="list-group">
                     <h4 class="list-group-item-heading"></h4>
-                    @if (empty($colors))
-                        <div class="alert alert-info alert_{{strtolower($storage_name_sm)}}">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <strong>Oops</strong> Nothing in the {{$storage_name_lg}}
-                        </div>
-                    @endif
+                    <div class="alert alert-info alert_{{strtolower($storage_name_sm)}} @if (!empty($colors)) no_display @endif">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Oops</strong> Nothing in the {{$storage_name_lg}}
+                    </div>
                     <div class='list_{{strtolower($storage_name_sm)}}'>
                       @foreach ($colors as $c)
                       <div>

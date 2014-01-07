@@ -7,26 +7,32 @@ Storage:
   ☐ MongoDB
 
 Larabooster:
-  ✔ interactions on UI for add @done (14-01-04)
-  ✔ glitch when JS appending on UI @done (14-01-05)
-  ✔ interactions on UI for delete @done (14-01-05)
-  ✔ Error when deleting a just added element @done (14-01-05)
-  ☐ Edge case of last item released should display the alert
-  ☐ Validations
-    ✔ Server side @done (14-01-05)
-    ☐ Client side (basic, just empty input)
-    ☐ Client advanced (maskInput)
-  ☐ exceptions for errors
-  ☐ unit tests
-  ☐ Hosting on digitalOcean
-  ☐ GoogleAnalytics
-  ☐ HTTP middleware for too many actions
-  ☐ Display only last 10 items added
-    ☐ pagination ?
-  ☐ AngularJS
+  V0.1:
+    ✔ interactions on UI for add @done (14-01-04)
+    ✔ glitch when JS appending on UI @done (14-01-05)
+    ✔ interactions on UI for delete @done (14-01-05)
+    ✔ Error when deleting a just added element @done (14-01-05)
+  V0.2 - UI revamp :
+  ☐ UI Using angularJS
+    ☐ Add
+    ☐ Delete
+    ☐ Toggling alerts
   ☐ About page
-  ☐ Code snippet and help for each storage
-  ☐ Versionning of project
+  ☐ Validations
+  ☐ UI limitations of X items
+  ☐ MaskInput for hexadecimal
+ V0.3 - Backend improvment:
+  ☐ Http Middleware limit
+  ☐ Exception on Errors
+  ☐ Pagination handling
+ V0.4 - Open source relase + hosting:
+  ☐ Hosting on DigitalOcean
+  ☐ Google Analytics
+  ☐ Explanation / about page
+  ☐ Code snippets
+  Bulk:
+  ☐ unit tests
+  ☐ paginatio
 
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
