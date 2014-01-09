@@ -1,0 +1,57 @@
+
+
+<div class="col-lg-4" id="[[ name ]]">
+    <div class="panel panel-default">
+          <div class="panel-heading">
+                <h3 class="panel-title">
+                  [[ name ]]
+                </h3>
+          </div>
+          <div class="panel-body">
+                <div class="list-group">
+                    <h4 class="list-group-item-heading"></h4>
+                    <div ng-show='loading == true'>
+                      Loading...
+                    </div>
+                    <div class="alert alert-info"
+                         ng-show='loading == false && list.length == 0'>
+
+                        <button type="button"
+                                class="close"
+                                data-dismiss="alert"
+                                aria-hidden="true">&times;</button>
+
+                        <strong>Oops</strong> Nothing in the [[ name ]] storage.
+
+                    </div>
+                    <div ng-show='loading == false && list.length > 0'>
+                      <div ng-repeat="c in list" id="[[ name ]]_[[ c ]]">
+                        <div class='color_code'>
+                          [[ c | upper ]]
+                        </div>
+                        <div class='color_box' style="background-color:[[ c ]];">
+                        </div>
+                        <span class='delete_color' ng-click='removeColor(c)'>
+                          <i class='fa fa-times'></i>
+                        </span>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                  <legend>Add color to [[ name ]]</legend>
+                </div>
+
+               <div class="col-lg-12">
+                  <div class="input-group">
+                    <input ng-model="color" type="text" class="form-control">
+                    <span class="input-group-btn">
+                      <button class="btn btn-primary" type="button" ng-click='addColor(color)'>Go!</button>
+                    </span>
+                  </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+
+
+          </div>
+    </div>
+</div>

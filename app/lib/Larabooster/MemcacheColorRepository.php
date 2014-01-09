@@ -32,7 +32,7 @@ class MemcacheColorRepository implements ColorRepositoryInterface
     }
 
     public function delete($code)
-    {        
+    {
         if (!(\Cache::has('colors')))
             return false;
         $colors = \Cache::get('colors');
@@ -52,7 +52,7 @@ class MemcacheColorRepository implements ColorRepositoryInterface
         {
             $colors = \Cache::get('colors');
         }
-        \Log::info(print_r($colors, true));
-        return array_reverse($colors);
+        $colors = array_reverse($colors);
+        return array_splice($colors, 0, $limit);
     }
-} 
+}

@@ -27,8 +27,8 @@ class RedisColorRepository implements ColorRepositoryInterface
 
     public function getAll($limit = 10)
     {
-        $redis_colors    = \Redis::smembers('colors');
-        return $redis_colors;
+        $redis_colors    = array_reverse(\Redis::smembers('colors'));
+        return array_splice($redis_colors, 0, $limit);
     }
 
 }
