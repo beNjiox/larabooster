@@ -24,6 +24,8 @@ Larabooster:
   ☐ Http Middleware limit
   ☐ Exception on Errors
   ☐ Pagination handling
+    ☐ Handle basic pagination
+    ☐ Handle delete
  V0.4 - Open source relase + hosting:
   ☐ About page
   ☐ Hosting on DigitalOcean
