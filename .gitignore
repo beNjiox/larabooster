@@ -6,3 +6,9 @@ composer.lock
 Thumbs.db
 .vagrant/
 dump.rdb
+
+*.scssc
+
+*.cdncache
+
+node_modules

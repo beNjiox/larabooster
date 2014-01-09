@@ -56,11 +56,12 @@ Roadmap
     [x] Basic UI (jQuery based)
     [x] Boilerplate provisioning file
 # V0.2 - UI revamp :
-    [] UI Using angularJS
-    [] Better error handling (client side)
-    [] UI limitations of X items
-    [] Masked Input for hexadecimal
+    [x] UI Using angularJS
+    [x] Improved UI details
+    [x] Improved routing
+    [x] Grunt introduced
 # V0.3 - Backend improvment:
+    [x] getAll now account for limits
     [] Http Middleware limit
     [] Exception on Errors
     [] Pagination handling

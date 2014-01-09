@@ -1,9 +1,14 @@
 <?php
 
+function is_hexadecimal($color)
+{
+    return preg_match('/^#[a-f0-9]{6}$/i', $color);
+}
+
 use Larabooster\ColorRepositoryInterface;
 
 class ColorsController extends BaseController {
-    
+
     protected $color;
 
     public function __construct(ColorRepositoryInterface $color)
@@ -34,7 +39,7 @@ class ColorsController extends BaseController {
             if ($this->color->exists($code))
             {
                 $errors['msg'] = "color '{$code}' already exists in this storage!";
-                return Response::json($errors, 400);                
+                return Response::json($errors, 400);
             }
 
             $this->color->add($code);
@@ -51,13 +56,13 @@ class ColorsController extends BaseController {
             $this->color->delete(Input::get('code'));
             return Response::json(null, 204);
         }
-        
+
         $errors = [
             'errors' => 'VALIDATION_FAIL',
             'msg'    => 'You should pass a code to be able to delete a color.'
         ];
 
-        return Response::json(400, $errors);
+        return Response::json($errors, 400);
 
     }
 }
