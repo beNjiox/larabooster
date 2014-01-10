@@ -1,0 +1,16 @@
+{
+  "name": "Larabooster",
+  "version": "0.2.0",
+  "private": true,
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-sass": "~0.5.1",
+    "grunt-template": "~0.2.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-cssmin": "~0.7.0"
+  }
+}

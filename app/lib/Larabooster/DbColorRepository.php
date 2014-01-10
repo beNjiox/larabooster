@@ -2,7 +2,7 @@
 
 use Larabooster\ColorRepositoryInterface;
 
-class DbColorRepository implements ColorRepositoryInterface 
+class DbColorRepository implements ColorRepositoryInterface
 {
 
     public $whoami = "MySQL";
@@ -26,11 +26,11 @@ class DbColorRepository implements ColorRepositoryInterface
 
     public function getAll($limit = 10)
     {
-        $colors_raw = \Color::orderBy('id', 'desc')->get()->toArray();
+        $colors_raw = \Color::orderBy('id', 'desc')->take($limit)->get()->toArray();
         $colors = [];
         foreach ($colors_raw as $color) {
             $colors[] = $color['code'];
         }
         return $colors;
     }
-} 
+}
