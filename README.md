@@ -24,6 +24,7 @@ Requirements
 To make good use of vagrant you need to download
 
 1. [Vagrant](http://www.vagrantup.com/downloads.html)
+    1.2 install Vagrant plugin hostmanager `vagrant plugin install vagrant-hostmanager`
 2. [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 3. Precise32 Box (You can do without, but it's better to have it in local)
 
