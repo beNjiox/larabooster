@@ -12,3 +12,7 @@ dump.rdb
 *.cdncache
 
 node_modules
+
+larabooster.sublime-project
+
+larabooster.sublime-workspace

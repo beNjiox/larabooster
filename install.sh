@@ -13,7 +13,7 @@ sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again p
 echo "[ ------ Installing essentials ------ ]"
 # Install base items
 
-sudo apt-get install -y vim tmux curl wget build-essential python-software-properties
+sudo apt-get install -y vim tmux curl wget build-essential software-properties-common python-software-properties
 sudo add-apt-repository -y ppa:ondrej/php5
 sudo apt-get update
 sudo apt-get install -y git-core php5 apache2 libapache2-mod-php5 php5-mysql php5-curl php5-gd php5-mcrypt php5-xdebug php5-readline mysql-server emacs
@@ -66,7 +66,7 @@ sudo chown vagrant:vagrant /home/vagrant/.gitconfig
 echo "[ ------ Start Composer ------ ]"
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
-cd /vagrant && sudo composer update
+cd /vagrant && sudo composer install
 
 echo "[ ------ Setup App ------ ]"
 cd /vagrant && php artisan migrate
