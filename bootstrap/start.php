@@ -25,10 +25,7 @@ $app = new Illuminate\Foundation\Application;
 */
 
 $env = $app->detectEnvironment(function() {
-    return 'local';
-    // if ($_SERVER['HTTP_HOST'] != "larabooster.io")
-    //     return "local";
-    // return "production";
+  return getenv('ENV_TYPE') ?: 'local';
 });
 
 /*
