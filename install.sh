@@ -1,9 +1,4 @@
 #!/usr/bin/env bash
-
-# install.sh highly inspired by great laracasts lessons
-# www.laracasts.com
-
-echo "[ ------ Laravel + Redis + Memcache + MySQL  ------ ]"
 sudo apt-get update
 
 echo "[ ------ Setup MySQL ------ ]"
@@ -27,19 +22,24 @@ echo "[ ------ Install Memcache ------ ]"
 sudo apt-get install -y memcached php5-memcache php5-memcached
 
 echo "[ ------ Install Redis ------ ]"
-sudo wget http://download.redis.io/redis-stable.tar.gz
-sudo tar xvzf redis-stable.tar.gz
-cd redis-stable && make && cd src/
-sudo cp redis-server /usr/local/bin/
-sudo cp redis-cli /usr/local/bin/
+sudo apt-get install -y redis-server
+sudo mkdir -p /etc/redis/conf.d
+sudo service redis-server restart
 
 echo "[ ------ Install MySQL ------ ]"
 # Of course if used in a production/critical mode, you might want to change this
 echo "create database larabooster" | mysql -uroot -proot
 
+echo "[ ------ Install MongoDB ------ ]"
+# Get key and add to sources
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
+# Update
+sudo apt-get update
+# Install MongoDB
+sudo apt-get -y install mongodb-10gen
 
 echo "[ ------ Setup Server ------ ]"
-
 cat << EOF | sudo tee -a /etc/php5/mods-available/xdebug.ini
 xdebug.scream=1
 xdebug.cli_color=1
@@ -48,9 +48,8 @@ EOF
 
 echo "[ ------ Setup Apache ------ ]"
 sudo a2enmod rewrite
-curl https://gist.github.com/fideloper/2710970/raw/vhost.sh > vhost
-sudo chmod guo+x vhost
-sudo mv vhost /usr/local/bin
+sed -i 's/\/var\/www\/html/\/var\/www/' /etc/apache2/sites-available/000-default.conf
+sudo service apache2 reload
 
 echo "[ ------ Setup PHP ------ ]"
 sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php5/apache2/php.ini
@@ -58,10 +57,6 @@ sed -i "s/display_errors = .*/display_errors = On/" /etc/php5/apache2/php.ini
 sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
 sudo service apache2 restart
-
-echo "[ ------ Setup Git ------ ]"
-curl https://gist.github.com/fideloper/3751524/raw/.gitconfig > /home/vagrant/.gitconfig
-sudo chown vagrant:vagrant /home/vagrant/.gitconfig
 
 echo "[ ------ Start Composer ------ ]"
 curl -sS https://getcomposer.org/installer | php
@@ -77,8 +72,10 @@ sudo ln -s /vagrant/public /var/www
 
 echo "[ ------ Setup services ------ ]"
 sudo service memcached start&
-redis-server&
+sudo redis-server&
 
-echo "Welcome !"
+echo "[ ------ Setup ZSH ------ ]"
+apt-get install zsh
+sudo su - vagrant -c 'curl -L http://bit.ly/bguezsh > ~/bguezsh'
+sudo su - vagrant -c 'sh ~/bguezsh'
 
-echo "browse larabooster.local"
