@@ -71,8 +71,3 @@ echo "[ ------ Linking the app to /var/www ------ ]"
 sudo rm -rf /var/www
 sudo ln -s /vagrant/public /var/www
 
-echo "[ ------ Setup ZSH ------ ]"
-apt-get install zsh
-sudo su - vagrant -c 'curl -L http://bit.ly/bguezsh > ~/bguezsh'
-sudo su - vagrant -c 'sh ~/bguezsh'
-
