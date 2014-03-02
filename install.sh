@@ -20,6 +20,7 @@ sudo apt-get install git
 
 echo "[ ------ Install Memcache ------ ]"
 sudo apt-get install -y memcached php5-memcache php5-memcached
+sudo service memcached start
 
 echo "[ ------ Install Redis ------ ]"
 sudo apt-get install -y redis-server
@@ -69,10 +70,6 @@ cd /vagrant && php artisan migrate
 echo "[ ------ Linking the app to /var/www ------ ]"
 sudo rm -rf /var/www
 sudo ln -s /vagrant/public /var/www
-
-echo "[ ------ Setup services ------ ]"
-sudo service memcached start&
-sudo redis-server&
 
 echo "[ ------ Setup ZSH ------ ]"
 apt-get install zsh
