@@ -13,8 +13,11 @@
                     <div ng-show='loading == true'>
                       Loading...
                     </div>
+                    <div ng-show='limit_reached == true' class='alert alert-danger'>
+                      You have reached the API limit.
+                    </div>
                     <div class="alert alert-info"
-                         ng-show='loading == false && list.length == 0'>
+                         ng-show='loading == false && list.length == 0 && limit_reached == false'>
 
                         <button type="button"
                                 class="close"
@@ -44,7 +47,7 @@
 
                <div class="col-lg-12">
                   <div class="input-group">
-                    <input ng-model="color" type="text" class="form-control">
+                    <input ng-model="color" type="text" class="form-control" ng-disabled='limit_reached == true'>
                     <span class="input-group-btn">
                       <button class="btn btn-primary" type="button" ng-click='addColor(color)'>Go!</button>
                     </span>

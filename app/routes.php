@@ -1,11 +1,33 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Filter classes
+|--------------------------------------------------------------------------
+|
+| Registering of classes handling filters
+|
+*/
+
+Route::filter('beforeRateLimit', 'Larabooster\Filters\RateLimitFilter@before');
+Route::filter('afterRateLimit', 'Larabooster\Filters\RateLimitFilter@after');
+
+/*
+|--------------------------------------------------------------------------
+| Routes
+|--------------------------------------------------------------------------
+|
+| Registering of routes
+|
+*/
+
+
 Route::get('/', function()
 {
     return View::make('home');
 });
 
-Route::group(array('prefix' => 'api', 'before' => 'api.before.rateLimiter', 'after' => 'api.after.rateLimiter'), function()
+Route::group(array('prefix' => 'api', 'before' => 'beforeRateLimit', 'after' => 'afterRateLimit'), function()
 {
 
     $storages = [
