@@ -21,14 +21,13 @@ class RedisColorRepository implements ColorRepositoryInterface
     public function delete($code)
     {
         \Redis::srem('colors', $code);
-        dd("delete redis");
         return true;
     }
 
-    public function getAll($limit = 10)
+    public function getAll($page, $rpp)
     {
         $redis_colors    = array_reverse(\Redis::smembers('colors'));
-        return array_splice($redis_colors, 0, $limit);
+        return array_splice($redis_colors, $page * $rpp, $rpp);
     }
 
 }

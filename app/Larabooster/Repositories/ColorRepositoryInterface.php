@@ -23,5 +23,5 @@ interface ColorRepositoryInterface
      * @param  [type] $limit [description]
      * @return array
      */
-    public function getAll($limit = 10);
+    public function getAll($page, $rpp);
 }

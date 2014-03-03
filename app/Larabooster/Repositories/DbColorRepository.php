@@ -24,11 +24,11 @@ class DbColorRepository implements ColorRepositoryInterface
         return $color->save();
     }
 
-    public function getAll($limit = 10)
+    public function getAll($page, $rpp)
     {
-      \Log::info(print_r("getAllDB", true));
-      $colors_raw = \Color::orderBy('id', 'desc')->take($limit)->get()->toArray();
-      $colors = [];
+      $colors_raw = \Color::orderBy('id', 'desc')->skip($page * $rpp)->take($rpp)->get()->toArray();
+      $colors     = [];
+
       foreach ($colors_raw as $color) {
           $colors[] = $color['code'];
       }

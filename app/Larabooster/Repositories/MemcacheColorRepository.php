@@ -45,7 +45,7 @@ class MemcacheColorRepository implements ColorRepositoryInterface
         }
     }
 
-    public function getAll($limit = 10)
+    public function getAll($page, $rpp)
     {
         $colors = [];
         if (\Cache::has('colors'))
@@ -53,6 +53,6 @@ class MemcacheColorRepository implements ColorRepositoryInterface
             $colors = \Cache::get('colors');
         }
         $colors = array_reverse($colors);
-        return array_splice($colors, 0, $limit);
+        return array_splice($colors, $page * $rpp, $rpp);
     }
 }

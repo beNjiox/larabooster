@@ -14,9 +14,14 @@ class ColorsController extends BaseController {
     $this->validator = $validator;
   }
 
-  public function getAll($limit = null)
+  public function getAll()
   {
-    return $this->color->getAll($limit);
+    $page = 0;
+    $rpp  = \Config::get('app.RESULT_PER_PAGE');
+
+    if (Input::has('page')) $page = Input::get('page');
+
+    return $this->color->getAll($page, $rpp);
   }
 
   public function store()
