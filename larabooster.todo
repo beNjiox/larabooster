@@ -1,40 +1,40 @@
-Storage:
-  ✔ MySQL @done (14-01-05)
-  ✔ Redis @done (14-01-05)
-  ✔ Memcache @done (14-01-05)
-  ☐ File
-  ☐ postgreSQL
-  ☐ MongoDB
-
 Larabooster:
-  V0.1:
-    ✔ interactions on UI for add @done (14-01-04)
-    ✔ glitch when JS appending on UI @done (14-01-05)
-    ✔ interactions on UI for delete @done (14-01-05)
-    ✔ Error when deleting a just added element @done (14-01-05)
-  V0.2 - UI revamp :
-    ✔ UI Using angularJS @done (14-01-09)
-      ✔ Add @done (14-01-09)
-      ✔ Delete @done (14-01-09)
-      ✔ Toggling alerts @done (14-01-09)
-    ✔ Validations @done (14-01-09)
-    ✔ UI limitations of X items @done (14-01-09)
-    ✔ MaskInput for hexadecimal @done (14-01-09)
+ V0.1:
+ V0.2 - UI revamp :
  V0.3 - Backend improvment:
   ☐ Http Middleware limit
   ☐ Exception on Errors
-  ☐ Pagination handling
- V0.4 - Open source relase + hosting:
+V0.4 - Pagination handling:
+  ☐ Backend
+  ☐ FrontEnd
+V0.5 - Testing:
+  ☐ Testing Controller
+  ☐ Testing Drivers
+  ☐ Testing FrontEnd
+ V0.6 - Open source relase + hosting:
   ☐ About page
-  ☐ Hosting on DigitalOcean
   ☐ Google Analytics
   ☐ Explanation / about page
   ☐ Code snippets
-  Bulk:
-  ☐ unit tests
-  ☐ paginatio
+V0.7 - New Drivers:
+  ☐ File
+  ☐ MongoDB
+  ☐ SQLite
+  ☐ PostgreSQL
 
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Hosting on DigitalOcean @done (14-03-03 00:45) @project(V0.5 - Testing / V0.6 - Open source relase + hosting)
+ ✔ Validations @done (14-01-09) @project(Larabooster / V0.2 - UI revamp )
+ ✔ UI limitations of X items @done (14-01-09) @project(Larabooster / V0.2 - UI revamp )
+ ✔ UI Using angularJS @done (14-01-09) @project(Larabooster / V0.2 - UI revamp )
+ ✔ Toggling alerts @done (14-01-09) @project(Larabooster / V0.2 - UI revamp )
+ ✔ MaskInput for hexadecimal @done (14-01-09) @project(Larabooster / V0.2 - UI revamp )
+ ✔ Delete @done (14-01-09) @project(Larabooster / V0.2 - UI revamp )
+ ✔ Add @done (14-01-09) @project(Larabooster / V0.2 - UI revamp )
+ ✔ interactions on UI for delete @done (14-01-05) @project(Larabooster / V0.1)
+ ✔ glitch when JS appending on UI @done (14-01-05) @project(Larabooster / V0.1)
+ ✔ Error when deleting a just added element @done (14-01-05) @project(Larabooster / V0.1)
+ ✔ interactions on UI for add @done (14-01-04) @project(Larabooster / V0.1)
 ✔ separates files @done (14-01-03) @project(Larabooster)
