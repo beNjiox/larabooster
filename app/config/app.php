@@ -2,6 +2,8 @@
 
 return array(
 
+  'API_RATE_LIMIT' => getenv('API_RATE_LIMIT') ?: 1000,
+
 	/*
 	|--------------------------------------------------------------------------
 	| Application Debug Mode
