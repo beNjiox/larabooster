@@ -5,13 +5,13 @@ Route::get('/', function()
     return View::make('home');
 });
 
-Route::group(array('prefix' => 'api'), function()
+Route::group(array('prefix' => 'api', 'before' => 'apiRateLimiter'), function()
 {
 
     $storages = [
-        'mysql'    => [ 'repo' => 'Larabooster\DbColorRepository' ],
-        'memcache' => [ 'repo' => 'Larabooster\MemcacheColorRepository' ],
-        'redis'    => [ 'repo' => 'Larabooster\RedisColorRepository' ]
+        'mysql'    => [ 'repo' => 'Larabooster\Repositories\DbColorRepository' ],
+        'memcache' => [ 'repo' => 'Larabooster\Repositories\MemcacheColorRepository' ],
+        'redis'    => [ 'repo' => 'Larabooster\Repositories\RedisColorRepository' ]
      ];
 
     foreach ($storages as $kStorage => $vStorage)

@@ -5,7 +5,7 @@ function is_hexadecimal($color)
     return preg_match('/^#[a-f0-9]{6}$/i', $color);
 }
 
-use Larabooster\ColorRepositoryInterface;
+use Larabooster\Repositories\ColorRepositoryInterface;
 
 class ColorsController extends BaseController {
 
