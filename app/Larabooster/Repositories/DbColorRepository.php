@@ -1,6 +1,6 @@
-<?php namespace Larabooster;
+<?php namespace Larabooster\Repositories;
 
-use Larabooster\ColorRepositoryInterface;
+use Larabooster\Repositories\ColorRepositoryInterface;
 
 class DbColorRepository implements ColorRepositoryInterface
 {
@@ -26,11 +26,12 @@ class DbColorRepository implements ColorRepositoryInterface
 
     public function getAll($limit = 10)
     {
-        $colors_raw = \Color::orderBy('id', 'desc')->take($limit)->get()->toArray();
-        $colors = [];
-        foreach ($colors_raw as $color) {
-            $colors[] = $color['code'];
-        }
-        return $colors;
+      \Log::info(print_r("getAllDB", true));
+      $colors_raw = \Color::orderBy('id', 'desc')->take($limit)->get()->toArray();
+      $colors = [];
+      foreach ($colors_raw as $color) {
+          $colors[] = $color['code'];
+      }
+      return $colors;
     }
 }

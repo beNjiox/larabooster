@@ -1,24 +1,47 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Filter classes
+|--------------------------------------------------------------------------
+|
+| Registering of classes handling filters
+|
+*/
+
+Route::filter('beforeRateLimit', 'Larabooster\Filters\RateLimitFilter@before');
+Route::filter('afterRateLimit', 'Larabooster\Filters\RateLimitFilter@after');
+
+/*
+|--------------------------------------------------------------------------
+| Routes
+|--------------------------------------------------------------------------
+|
+| Registering of routes
+|
+*/
+
+
 Route::get('/', function()
 {
     return View::make('home');
 });
 
-Route::group(array('prefix' => 'api'), function()
+Route::group(array('prefix' => 'api', 'before' => 'beforeRateLimit', 'after' => 'afterRateLimit'), function()
 {
 
     $storages = [
-        'mysql'    => [ 'repo' => 'Larabooster\DbColorRepository' ],
-        'memcache' => [ 'repo' => 'Larabooster\MemcacheColorRepository' ],
-        'redis'    => [ 'repo' => 'Larabooster\RedisColorRepository' ]
+        'mysql'    => [ 'repo' => 'Larabooster\Repositories\DbColorRepository' ],
+        'memcache' => [ 'repo' => 'Larabooster\Repositories\MemcacheColorRepository' ],
+        'redis'    => [ 'repo' => 'Larabooster\Repositories\RedisColorRepository' ]
      ];
 
     foreach ($storages as $kStorage => $vStorage)
     {
         Route::group(array('prefix' => $kStorage), function() use ($kStorage, $vStorage) {
 
-            $controller = new ColorsController(new $vStorage['repo']);
+            $repo       = new $vStorage['repo'];
+            $controller = new ColorsController($repo, new Larabooster\Validators\ColorValidator($repo));
 
             Route::get("/", function() use ($controller) {
                 return $controller->getAll(3);

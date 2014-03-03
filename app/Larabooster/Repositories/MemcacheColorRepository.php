@@ -1,6 +1,6 @@
-<?php namespace Larabooster;
+<?php namespace Larabooster\Repositories;
 
-use Larabooster\ColorRepositoryInterface;
+use Larabooster\Repositories\ColorRepositoryInterface;
 
 class MemcacheColorRepository implements ColorRepositoryInterface
 {

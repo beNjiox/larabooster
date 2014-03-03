@@ -1,68 +1,51 @@
 <?php
 
-function is_hexadecimal($color)
-{
-    return preg_match('/^#[a-f0-9]{6}$/i', $color);
-}
-
-use Larabooster\ColorRepositoryInterface;
+use Larabooster\Repositories\ColorRepositoryInterface;
+use Larabooster\Validators\ColorValidator;
 
 class ColorsController extends BaseController {
 
-    protected $color;
+  protected $color;
+  protected $validator;
 
-    public function __construct(ColorRepositoryInterface $color)
+  public function __construct(ColorRepositoryInterface $color, ColorValidator $validator)
+  {
+    $this->color     = $color;
+    $this->validator = $validator;
+  }
+
+  public function getAll($limit = null)
+  {
+    return $this->color->getAll($limit);
+  }
+
+  public function store()
+  {
+    if ( ! $this->validator->validates(Input::all()))
     {
-        $this->color = $color;
+      return Response::json([
+        'error' => 'VALIDATION_FAILED',
+        'msg'   => $this->validator->getError()
+      ], 400);
     }
 
-    public function getAll($limit = null)
+    $this->color->add(Input::get('code'));
+    return Response::json(null, 204);
+  }
+
+  public function delete()
+  {
+    if (Input::has('code'))
     {
-        return $this->color->getAll($limit);
+      $this->color->delete(Input::get('code'));
+      return Response::json(null, 204);
     }
 
-    public function store()
-    {
-        $errors = [
-            'errors' => 'VALIDATION_FAIL',
-            'msg' => ''
-        ];
+    $errors = [
+      'error' => 'VALIDATION_FAIL',
+      'msg'   => 'You should pass a code to be able to delete a color.'
+    ];
 
-        if (Input::has('code'))
-        {
-            $code = Input::get('code');
-            if (!is_hexadecimal($code))
-            {
-                $errors['msg'] = "color '{$code}' is not hexadecimal";
-                return Response::json($errors, 400);
-            }
-            if ($this->color->exists($code))
-            {
-                $errors['msg'] = "color '{$code}' already exists in this storage!";
-                return Response::json($errors, 400);
-            }
-
-            $this->color->add($code);
-            return Response::json(null, 204);
-        }
-        $errors['msg'] = 'Please fill the color input';
-        return Response::json($errors, 400);
-    }
-
-    public function delete()
-    {
-        if (Input::has('code'))
-        {
-            $this->color->delete(Input::get('code'));
-            return Response::json(null, 204);
-        }
-
-        $errors = [
-            'errors' => 'VALIDATION_FAIL',
-            'msg'    => 'You should pass a code to be able to delete a color.'
-        ];
-
-        return Response::json($errors, 400);
-
-    }
+    return Response::json($errors, 400);
+  }
 }

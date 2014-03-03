@@ -16,38 +16,53 @@ app.directive 'storagePanel', ['$http', '$timeout', ($http, $timeout) ->
         scope:
             'storage': '@ngName'
         link: (scope, element, attrs) ->
+
+            storage_action_error_handling = (resp, status) ->
+              if status is 403
+                alert resp
+                scope.limit_reached = true
+              else
+                alert "An error occured [#{resp.msg}]"
+
             # fixme ; doesn't work without time
             $timeout ->
                 jQuery("##{scope.storage} input[type=text]").mask("#hhhhhh");
             , 100
 
-            scope.loading = true
-            scope.list    = []
-            scope.name    = scope.storage
-            $http.get("/api/#{scope.storage}").success (data) ->
+            scope.loading       = true
+            scope.list          = []
+            scope.name          = scope.storage
+            scope.limit_reached = false
+            qGetResp            = $http.get("/api/#{scope.storage}")
+
+            qGetResp.success (data) ->
                 scope.list    = data
                 scope.loading = false
-                scope.addColor = (color) ->
-                    q = $http.post("/api/#{scope.storage}", {code: color})
+
+            qGetResp.error (resp, status) ->
+              if status is 403
+                scope.loading       = false
+                scope.limit_reached = true
+
+            scope.addColor = (color) ->
+                q = $http.post("/api/#{scope.storage}", {code: color})
+                q.success (data) ->
+                    console.log "Color #{color} added successfuly"
+                    scope.list.unshift color
+                    $("input[type=text]").val("")
+                q.error storage_action_error_handling
+            scope.removeColor = (color) ->
+                if confirm "You are attempting to delete #{color} from #{scope.name}. Confirm?"
+                    q = $http
+                        method: "delete"
+                        url: "/api/#{scope.storage}"
+                        params: {code: color}
                     q.success (data) ->
-                        console.log "Color #{color} added successfuly"
-                        scope.list.unshift color
-                        $("input[type=text]").val("")
-                    q.error (resp) ->
-                        alert "An error occured [#{resp.msg}]"
-                scope.removeColor = (color) ->
-                    if confirm "You are attempting to delete #{color} from #{scope.name}. Confirm?"
-                        q = $http
-                            method: "delete"
-                            url: "/api/#{scope.storage}"
-                            params: {code: color}
-                        q.success (data) ->
-                            console.log "Color #{color} removed successfuly"
-                            id = "#{scope.storage}_#{color}";
-                            $(id).fadeOut()
-                            scope.list = _.without(scope.list, _.findWhere(scope.list, color))
-                        q.error (resp) ->
-                            alert "An error occured [#{resp.msg}]"
+                        console.log "Color #{color} removed successfuly"
+                        id = "#{scope.storage}_#{color}";
+                        $(id).fadeOut()
+                        scope.list = _.without(scope.list, _.findWhere(scope.list, color))
+                    q.error storage_action_error_handling
     }
 ]
 

@@ -2,7 +2,7 @@ Larabooster:
  V0.1:
  V0.2 - UI revamp :
  V0.3 - Backend improvment:
-  ☐ Http Middleware limit
+  ✔ Http Middleware limit @done (14-03-03 22:10)
   ☐ Exception on Errors
 V0.4 - Pagination handling:
   ☐ Backend

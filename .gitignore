@@ -16,3 +16,4 @@ node_modules
 larabooster.sublime-project
 
 larabooster.sublime-workspace
+app/config/local/app.php
