@@ -29,36 +29,31 @@ App::after(function($request, $response)
 |
 */
 
-Route::filter('apiRateLimiter', function($route, $request)
+Route::filter('api.after.rateLimiter', function($route, $request, $response)
 {
-  $request_per_hours = \Config::get('app.API_RATE_LIMIT') ?: 20;
-  $client_key = sprintf("api:%s", $request->getClientIp());
-  Log::info(print_r($client_key, true));
-
+  $request_per_hours    = \Config::get('app.API_RATE_LIMIT') ?: 1000;
+  $client_key           = sprintf("api:%s", $request->getClientIp());
   $request_already_done = 0;
+
+  if (\Cache::has($client_key)) $request_already_done = \Cache::get($client_key);
+
+  $response->header('X-Ratelimit-Limit', $request_per_hours);
+  $response->header('X-Ratelimit-Remaining', $request_per_hours - $request_already_done);
+
+});
+
+Route::filter('api.before.rateLimiter', function($route, $request)
+{
+  $request_per_hours    = \Config::get('app.API_RATE_LIMIT') ?: 1000;
+  $client_key           = sprintf("api:%s", $request->getClientIp());
+  $request_already_done = 0;
+
   if (\Cache::has($client_key))
-  {
     $request_already_done = \Cache::increment($client_key);
-    Log::info(print_r(['request_already_done' => $request_already_done], true));
-  }
   else
     \Cache::add($client_key, 0, 60);
 
-
-  if ($request_already_done > $request_per_hours)
-  {
-    $headers = [
-      'X-Ratelimit-Limit'     => $request_per_hours,
-      'X-Ratelimit-Remaining' => $request_per_hours - $request_already_done
-    ];
-
-    $error = [
-      'error' => 'Api limit exceeded.'
-    ];
-
-    return Response::json($error, 403, $headers);
-  }
-
+  if ($request_already_done > $request_per_hours) return Response::json('Api Limit Exceeded', 403);
 });
 
 /*

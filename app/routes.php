@@ -5,7 +5,7 @@ Route::get('/', function()
     return View::make('home');
 });
 
-Route::group(array('prefix' => 'api', 'before' => 'apiRateLimiter'), function()
+Route::group(array('prefix' => 'api', 'before' => 'api.before.rateLimiter', 'after' => 'api.after.rateLimiter'), function()
 {
 
     $storages = [
