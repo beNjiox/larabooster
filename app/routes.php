@@ -40,7 +40,8 @@ Route::group(array('prefix' => 'api', 'before' => 'beforeRateLimit', 'after' => 
     {
         Route::group(array('prefix' => $kStorage), function() use ($kStorage, $vStorage) {
 
-            $controller = new ColorsController(new $vStorage['repo']);
+            $repo       = new $vStorage['repo'];
+            $controller = new ColorsController($repo, new Larabooster\Validators\ColorValidator($repo));
 
             Route::get("/", function() use ($controller) {
                 return $controller->getAll(3);
