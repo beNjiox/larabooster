@@ -2,6 +2,7 @@
 
 use Larabooster\Repositories\ColorRepositoryInterface;
 use Larabooster\Validators\ColorValidator;
+use Config;
 
 class ColorsController extends BaseController {
 
@@ -17,12 +18,12 @@ class ColorsController extends BaseController {
   public function getAll()
   {
     $page = 1;
-    $rpp  = \Config::get('app.RESULT_PER_PAGE');
+    $rpp  = Config::get('app.RESULT_PER_PAGE');
 
     if (Input::has('page')) $page = Input::get('page') - 1;
 
     $data                                = [];
-    $data['data']                        = $this->color->getAll($page, $rpp);;
+    $data['data']                        = $this->color->getAll($page, $rpp);
     $data['metadata']['total']           = (int) $this->color->total();
     $data['metadata']['page']            = (int) $page;
     $data['metadata']['result_per_page'] = (int) $rpp;

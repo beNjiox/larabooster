@@ -1,13 +1,10 @@
 Larabooster:
- V0.1:
- V0.2 - UI revamp :
+ V0.1 - first version:
+ V0.2 - UI revamp:
  V0.3 - Backend improvment:
  V0.4 - Pagination handling:
-  ☐ Backend
-  ☐ FrontEnd
  V0.5 - Testing:
   ☐ Testing Controller
-  ☐ Testing Drivers
   ☐ Testing FrontEnd
  V0.6 - Open source relase + hosting:
   ☐ About page
@@ -23,6 +20,8 @@ V0.7 - New Drivers:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Backend @done (14-03-04 18:28) @project(Larabooster / V0.4 - Pagination handling)
+ ✔ FrontEnd @done (14-03-04 18:28) @project(Larabooster / V0.4 - Pagination handling)
  ✔ Exception on Errors @done (14-03-03 23:20) @project(Larabooster / V0.3 - Backend improvment)
  ✔ Http Middleware limit @done (14-03-03 22:10) @project(Larabooster / V0.3 - Backend improvment)
  ✔ Hosting on DigitalOcean @done (14-03-03 00:45) @project(V0.5 - Testing / V0.6 - Open source relase + hosting)
