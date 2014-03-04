@@ -24,4 +24,10 @@ interface ColorRepositoryInterface
      * @return array
      */
     public function getAll($page, $rpp);
+
+    /**
+     * return the number of items in the entire collection
+     * @return int
+     */
+    public function total();
 }

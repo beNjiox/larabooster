@@ -7,11 +7,14 @@
                   [[ name ]]
                 </h3>
           </div>
+          <div class='panel-sub-header'>
+            <span ng-if="total > 0">Total: [[ total ]] - page [[ current_page ]] / [[ nb_pages ]] </span>
+          </div>
           <div class="panel-body">
                 <div class="list-group">
                     <h4 class="list-group-item-heading"></h4>
                     <div ng-show='loading == true'>
-                      Loading...
+                      <img src="images/spinner.gif" alt="loading..."> Loading...
                     </div>
                     <div ng-show='limit_reached == true' class='alert alert-danger'>
                       You have reached the API limit.
@@ -38,6 +41,12 @@
                           <i class='fa fa-times'></i>
                         </span>
                       </div>
+                    </div>
+                    <div ng-if="total > 0 && nb_pages > 1">
+                      <ul class="pager pager-sm">
+                        <li class="previous" ng-class="{disabled: current_page == 1}"><a ng-click='previous()'>&larr; Older</a></li>
+                        <li class="next" ng-class="{disabled: current_page == nb_pages}"><a ng-click='next()'>Newer &rarr;</a></li>
+                      </ul>
                     </div>
                 </div>
 

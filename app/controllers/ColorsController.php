@@ -16,12 +16,19 @@ class ColorsController extends BaseController {
 
   public function getAll()
   {
-    $page = 0;
+    $page = 1;
     $rpp  = \Config::get('app.RESULT_PER_PAGE');
 
-    if (Input::has('page')) $page = Input::get('page');
+    if (Input::has('page')) $page = Input::get('page') - 1;
 
-    return $this->color->getAll($page, $rpp);
+    $data                                = [];
+    $data['data']                        = $this->color->getAll($page, $rpp);;
+    $data['metadata']['total']           = (int) $this->color->total();
+    $data['metadata']['page']            = (int) $page;
+    $data['metadata']['result_per_page'] = (int) $rpp;
+    $data['metadata']['nb_pages']        = (int) ceil( ( $data['metadata']['total'] / $data['metadata']['result_per_page'] ) );
+
+    return $data;
   }
 
   public function store()

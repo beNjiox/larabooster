@@ -1,4 +1,4 @@
-/*! Larabooster - v0.2.0 - 2014-01-08 */
+/*! Larabooster - v0.2.0 - 2014-03-04 */
 .color_box {
   display: inline-block;
   height: 25px;
@@ -24,3 +24,16 @@
 
 .no_display {
   display: none; }
+
+.panel-sub-header {
+  font-size: 13px;
+  color: grey;
+  padding: 5px; }
+
+.pager li > a, .pager li > span {
+  display: inline-block;
+  padding: 3px;
+  background-color: #18bc9c;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 13px; }
