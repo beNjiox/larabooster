@@ -44,7 +44,7 @@ Route::group(array('prefix' => 'api', 'before' => 'beforeRateLimit', 'after' => 
             $controller = new ColorsController($repo, new Larabooster\Validators\ColorValidator($repo));
 
             Route::get("/", function() use ($controller) {
-                return $controller->getAll(3);
+                return $controller->getAll();
             });
             Route::post("/", function() use ($controller) {
                 return $controller->store();

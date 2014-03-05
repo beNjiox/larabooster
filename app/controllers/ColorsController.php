@@ -2,7 +2,6 @@
 
 use Larabooster\Repositories\ColorRepositoryInterface;
 use Larabooster\Validators\ColorValidator;
-use Config;
 
 class ColorsController extends BaseController {
 
@@ -29,7 +28,7 @@ class ColorsController extends BaseController {
     $data['metadata']['result_per_page'] = (int) $rpp;
     $data['metadata']['nb_pages']        = (int) ceil( ( $data['metadata']['total'] / $data['metadata']['result_per_page'] ) );
 
-    return $data;
+    return Response::json($data, 200);
   }
 
   public function store()
@@ -48,17 +47,17 @@ class ColorsController extends BaseController {
 
   public function delete()
   {
-    if (Input::has('code'))
+    if (!Input::has('code'))
     {
-      $this->color->delete(Input::get('code'));
-      return Response::json(null, 204);
+      $errors = [
+        'error' => 'VALIDATION_FAILED',
+        'msg'   => 'You should pass a code to be able to delete a color.'
+      ];
+
+      return Response::json($errors, 400);
     }
 
-    $errors = [
-      'error' => 'VALIDATION_FAIL',
-      'msg'   => 'You should pass a code to be able to delete a color.'
-    ];
-
-    return Response::json($errors, 400);
+    $this->color->delete(Input::get('code'));
+    return Response::json(null, 204);
   }
 }

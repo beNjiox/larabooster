@@ -35,5 +35,9 @@
     "config": {
         "preferred-install": "dist"
     },
-    "description": "The Laravel Framework."
+    "description": "The Laravel Framework.",
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "mockery/mockery": "dev-master"
+    }
 }

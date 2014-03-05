@@ -1,20 +1,12 @@
 # Vagrant Laravel Booster
 
-Installing this app will provide you a tiny demo using
+What's that?
+------------
+Checkout the online [demo](http://larabooster.bguez.io)
 
-* Laravel4 
-* Redis
-* Memcache
-* MySQL
-* And more
-
-for the lazy people who want to see before read, a demo will be soon available.
-
-In the future I plan to add some new fun things like
-
-* Queues
-* Workers
-* etc.
+The purpose of this project is to show a tested laravel4 project using vagrant which install multiple database/cache system and use them whitin
+a pretty angularJS/CoffeeScript webApp.
+The only thing you can do is add a color into a container (MySQL, memcache, Redis, MongoDB, SQLite, FileStorage etc.)
 
 ## Getting started
 
@@ -32,45 +24,9 @@ Guidelines
 ----------
 
 ```
-$ git clone [...]
-$ cd vagrant-laravel-booster
+$ git clone http://github.com/beNjiox/larabooster
+$ cd larabooster
 $ vagrant up
 ```
 
 run `http://larabooster.local` in your favorite browser
-
-Screenshots
------------
-
-[... Coming soon ... ]
-
-That's it !
-
-Roadmap
--------
-
-# V0.1 - First release
-    [x] initial storages
-        [x] MySQL
-        [x] Redis
-        [x] memcache
-    [x] Basic UI (jQuery based)
-    [x] Boilerplate provisioning file
-# V0.2 - UI revamp :
-    [x] UI Using angularJS
-    [x] Improved UI details
-    [x] Improved routing
-    [x] Grunt introduced
-# V0.3 - Backend improvment:
-    [x] getAll now account for limits
-    [] Http Middleware limit
-    [] Exception on Errors
-    [] Pagination handling
-# V0.4 - Open source relase + hosting:
-    [] Complete Readme
-        [] Getting started
-        [] Code snippets
-        [] Screenshots
-    [] Demo Hosting on DigitalOcean
-
-
